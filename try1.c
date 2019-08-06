@@ -9,14 +9,14 @@ int cnt=0;
 
 for(i=0;i<q_count;i++)
     {
-        if((q[i]-i)>=3)
+        if((q[i]-(i+1))>=3)
         {
             printf("Too chaotic\n");
-            break;
+		return;	
         }
     /*    else if((q[i]-(i))>3)
         {
-         printf("Too chaotic \n");
+         printf("Too chaotic");
             break;   
         } */
     }
@@ -33,28 +33,32 @@ for(i=0;i<q_count;i++)
             }
         }
     }
-printf("%d",cnt);
+printf("%d\n",cnt);
 }
 int main()
 {
-	int iRet=0,i=0,iLength1=0;
+	int iRet=0,i=0,iLength1=0,n=0,j=0;
  	int *p1=NULL;
+	printf("Enter N:");
+	scanf("%d",&n);
+	for(j=0;j<n;j++)
+	{
+	printf("Enter No. of Elements in ARRAY: \n");
+	scanf("%d",&iLength1);
 
-printf("Enter No. of Elements in ARRAY: \n");
-scanf("%d",&iLength1);
+	p1=(int *)malloc(iLength1*sizeof(int));
+	if(p1==NULL)
+	{
+    		return -1;
+	}
 
-p1=(int *)malloc(iLength1*sizeof(int));
-if(p1==NULL)
-{
-    return -1;
-}
-
-printf("Enter Elements of ARRAY: \n");
-for(i=0;i<iLength1;i++)
-{
-    scanf("%d",&p1[i]);
-}
-arr_bday(p1,iLength1);
-return 0;
+	printf("Enter Elements of ARRAY: \n");
+	for(i=0;i<iLength1;i++)
+	{
+    		scanf("%d",&p1[i]);
+	}
+	arr_bday(p1,iLength1);
+	}
+	return 0;
 
 }
