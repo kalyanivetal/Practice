@@ -1,0 +1,8 @@
+Your functions should have to follow this prototype:
+
+1)struct Stack *createStack(void)
+2)void Push(struct Stack **top,int data)
+3)int Pop(struct Stack **top)
+4)int isEmptyStack(struct Stack **top)
+5)int Top(Stack *top)
+6)void DeleteStack(struct Stack **top);
