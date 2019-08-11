@@ -3,21 +3,25 @@
 #include<malloc.h>
 
 
-typedef struct node
+struct stack
 {
 	int data;
-	struct node *next;
-}node;
+	struct stack *next;
+}stack;
 
-node *push(int n)
+struct stack *createStack(void)
+{
+
+}
+
+
+void push(struct stack **top,int data)
 {
 	int no,i=0;
-	node *head=NULL;
-	node *newn=NULL;
+	stack *top=NULL;
+	stack *newn=NULL;
 //	node *temp=NULL;
-	for(i=0;i<n;i++)
-	{
-		newn=(node *)malloc(sizeof(node));
+		newn=(stack *)malloc(sizeof(stack));
 		printf("Enter data:");
 		scanf("%d",&no);
 	
@@ -25,51 +29,49 @@ node *push(int n)
 		{
 			newn->data=no;
 			newn->next=NULL;
-			head=newn;
+			top=newn;
 		}
 		else
 		{
 			newn->data=no;
-			newn->next=head;
-			head=newn;
+			newn->next=top;
+			top=newn;
 		}
-	
-	}
-	return head;
+	return top;
 }
 
-node *pop(node *head)
+stack *pop(stack *top)
 {
 	int no=-1;
-	node *temp=head;
+	stack *temp=top;
 	if(head==NULL)
 	{
 		printf("Stack is Empty:");
 		return;
 	}
-	else if(head!=NULL)
+	else if(top!=NULL)
 	{
-		no=head->data;
-		temp=head;
-		head=head->next;
+		no=top->data;
+		temp=top;
+		head=top->next;
 		free(temp);
 		printf("\nItem Popped: %d",no);
 	}
-	return head;
+	return top;
 }
 
-void disp(node *head)
+void disp(stack *top)
 {
-	node *temp=head;
+	stack *temp=top;
 	while(temp!=NULL)
 	{
 		printf(" %d\t",temp->data);
 		temp=temp->next;
 	}
 }
-void isEmpty(node *head)
+void isEmpty(stack *top)
 {
-	if(head==NULL)
+	if(top==NULL)
 	{
 		printf("Stack is Empty");
 	}
@@ -81,8 +83,8 @@ void isEmpty(node *head)
 int main()
 
 {
-	node *head=NULL;
-	node *iRet=NULL;
+	stack *top=NULL;
+	stack *iRet=NULL;
 	int Ret=0,ch,n;
 	
 	while(1)
@@ -98,10 +100,7 @@ int main()
 	switch(ch)
 	{
 		case 1:
-		
-				printf("\nEnter How many elements in the Stack:");
-				scanf("%d",&n);
-				iRet=push(n);
+				push();
 				break;
 		
 		case 2:

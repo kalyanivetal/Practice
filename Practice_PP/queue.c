@@ -22,7 +22,6 @@ struct queue *create(){
 	struct list *list=(struct list*)malloc(sizeof(struct list));
 	queue->front=queue->rear=NULL;
 	return queue;
-
 }
 
 void enQueue(struct queue **head,int num){
@@ -64,6 +63,7 @@ int deQueue(struct queue **head){
 
 void delQ(struct queue **head){
 	struct list *temp=NULL;
+	temp=*head;
 	int n=0;
 	if((*head)->front==NULL)
 	{
@@ -74,9 +74,11 @@ void delQ(struct queue **head){
 		temp=(*head)->front;
 		while((*head)->front!=NULL)
 		{
+			n=temp->data;
+			temp=temp->next;
 			(*head)->front=(*head)->front->next;
 			free(temp);
-			(*head)->front=temp;
+			temp=(*head)->front;
 		}	
 	}
 }
@@ -96,17 +98,16 @@ int main()
 	struct queue *head=create();
 //	struct queue *Ret=NULL;
 	int n=0,ch=0,ret=0,num=0;
-	
 	while(1)
 	{
+	printf("\n________________\n");
+	printf("\n 1: ENQUEUE");
+	printf("\n 2: DEQUEUE");
+	printf("\n 3: isEmpty ");
+	printf("\n 4: Delete");
+	printf("\n 5: Exit ");
+	printf("\n ________________\n");
 
-		printf("\n________________\n");
-		printf("\n 1: ENQUEUE");
-		printf("\n 2: DEQUEUE");
-		printf("\n 3: isEmpty ");
-		printf("\n 4: Delete");
-		printf("\n 5: Exit ");
-		printf("\n ________________\n");
 
 		printf("\nEnter Your Choice: ");
 		scanf("%d",&ch);
