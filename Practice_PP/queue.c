@@ -7,7 +7,7 @@
 struct list
 {
 	int data;
-	struct queue *next;
+	struct list *next;
 }list;
 
 struct queue
@@ -20,6 +20,8 @@ struct queue *create(){
 
 	struct queue *queue=(struct queue*)malloc(sizeof(struct queue));
 	struct list *list=(struct list*)malloc(sizeof(struct list));
+	queue->front=queue->rear=NULL;
+	return queue;
 
 }
 
@@ -45,7 +47,7 @@ void enQueue(struct queue **head,int num){
 int deQueue(struct queue **head){
 	int n;
 	struct list *temp;
-	if((*head)==NULL)
+	if((*head)->front==NULL)
 	{
 	//	printf("\n Nothing in Queue");
 		return 0;
@@ -62,26 +64,25 @@ int deQueue(struct queue **head){
 
 void delQ(struct queue **head){
 	struct list *temp=NULL;
-	temp=*head;
 	int n=0;
-	if((*head)==NULL)
+	if((*head)->front==NULL)
 	{
 		printf("Queue is ALREADY empty.....");
 	}
 	else
 	{
-		while(*head!=NULL)
+		temp=(*head)->front;
+		while((*head)->front!=NULL)
 		{
-			n=temp->data;
-			temp=temp->next;
+			(*head)->front=(*head)->front->next;
 			free(temp);
-			(*head)=temp;
+			(*head)->front=temp;
 		}	
 	}
 }
 int isEmptyQ(struct queue *head)
 {
-	if(head==NULL)
+	if(head->front==NULL)
 	{
 		return TRUE;
 	}
@@ -92,19 +93,21 @@ int isEmptyQ(struct queue *head)
 }
 int main()
 {
-	struct queue *head=NULL;
+	struct queue *head=create();
 //	struct queue *Ret=NULL;
 	int n=0,ch=0,ret=0,num=0;
-	printf("\n________________\n");
-	printf("\n 1: ENQUEUE");
-	printf("\n 2: DEQUEUE");
-	printf("\n 3: isEmpty ");
-	printf("\n 4: Delete");
-	printf("\n 5: Exit ");
-	printf("\n ________________\n");
-
+	
 	while(1)
 	{
+
+		printf("\n________________\n");
+		printf("\n 1: ENQUEUE");
+		printf("\n 2: DEQUEUE");
+		printf("\n 3: isEmpty ");
+		printf("\n 4: Delete");
+		printf("\n 5: Exit ");
+		printf("\n ________________\n");
+
 		printf("\nEnter Your Choice: ");
 		scanf("%d",&ch);
 
