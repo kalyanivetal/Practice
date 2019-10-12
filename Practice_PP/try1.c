@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<malloc.h>
+#include<string.h>
  void  arr_bday(int [],int);
  void arr_bday(int q[],int q_count)
 {
